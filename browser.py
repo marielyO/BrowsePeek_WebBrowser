@@ -1,19 +1,24 @@
+from PyQt5.QtWidgets import QApplication, QMainWindow, QToolBar
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWebEngineWidgets import QWebEngineView
+
 import sys
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QToolBar
-
-class MainWindow(QMainWindow):
+class mainWindow(QMainWindow):
   def __init__(thewindow):
     super().__init__()
     thewindow.setWindowTitle('WebBrowser')
-    thewindow.resize(2000,1000)
     
-    thewindow.nav_bar = QToolBar('Navigation Toolbar')
-    thewindow.addToolBar(thewindow.nav_bar)
+    thewindow.browser = QWebEngineView()
+    thewindow.browser.setUrl(QUrl("http://google.com"))
+    thewindow.setCentralWidget(thewindow.browser)
     
+    thewindow.navigation = QToolBar('Navigation Toolbar')
+    thewindow.addToolBar(thewindow.navigation)
+    
+    thewindow.showMaximized()
     
 app=QApplication(sys.argv)
-window=MainWindow()
-window.show()
+window=mainWindow()
 
-sys.exit(app.exec_())
+app.exec_()
