@@ -5,26 +5,26 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView
 import sys
 
 class mainWindow(QMainWindow):
-    def __init__(thewindow):
+    def __init__(self):
         super().__init__()
-        thewindow.setWindowTitle('WebBrowser')
-
-        thewindow.browser = QWebEngineView()
-        thewindow.browser.setUrl(QUrl("http://google.com"))
-        thewindow.setCentralWidget(thewindow.browser)
-
-        thewindow.navigation = QToolBar('Navigation Toolbar')
-        thewindow.addToolBar(thewindow.navigation)
-
-        back_button = QAction('back', thewindow)
-        back_button.triggered.connect(thewindow.browser.back)
-        thewindow.navigation.addAction(back_button)
-
-        forward_button = QAction('forward', thewindow)
-        forward_button.triggered.connect(thewindow.browser.forward)
-        thewindow.navigation.addAction(forward_button)
-        
-        thewindow.showMaximized()
+        self.setWindowTitle('WebBrowser')
+    
+        self.browser = QWebEngineView()
+        self.browser.setUrl(QUrl("http://google.com"))
+        self.setCentralWidget(self.browser)
+    
+        self.navigation = QToolBar('Navigation Toolbar')
+        self.addToolBar(self.navigation)
+    
+        back_button = QAction('back',self)
+        back_button.triggered.connect(self.browser.back)
+        self.navigation.addAction(back_button)
+    
+        forward_button = QAction('forward',self)
+        forward_button.triggered.connect(self.browser.forward)
+        self.navigation.addAction(forward_button)
+    
+        self.showMaximized()
        
 app=QApplication(sys.argv)
 window=mainWindow()
